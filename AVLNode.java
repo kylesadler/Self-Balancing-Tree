@@ -14,43 +14,66 @@ public class AVLNode {
 	AVLNode right;
 	AVLNode parent;
 
-	int value;
+	int key;
+	Object object;
+
 	int depth;
 	int balanceFactor;
 	
-	public AVLNode(int n){
+	public AVLNode(int key, Object object){
+		/**
+		* Creates an AVLNode with key, object pair
+		*/
 		this.right = null;
 		this.left = null;
 		this.parent = null;
 
-		this.value = n;
+		this.key = key;
+		this.object = object;
+
+		this.depth = 1;
+		this.balanceFactor = 0;
+	}
+
+	public AVLNode(int key){
+		/**
+		* Creates an AVLNode with key only
+		*/
+		this.right = null;
+		this.left = null;
+		this.parent = null;
+
+		this.key = key;
+		this.object = null;
+
 		this.depth = 1;
 		this.balanceFactor = 0;
 	}
 	
-	public void add(int key){
+	public void add(int key, Object object){
 		/**
 		* Adds a key to one of the AVLNode's subtrees recursively. 
 		* This function is initially called by AVLTree on the root node
 		* 
-		* @param  key  the key to add to the tree
+		* @param  key  		the key to add to the tree
+		* @param  object  	the object stored key
 		*/
 
-		if(this.value > key){
+		if(this.key > key){
 			// if key is less than, add to the left
 			if(this.left != null){
-				this.left.add(key);
+				this.left.add(key, object);
 			} else {
-				this.left = new AVLNode(key);
+				this.left = new AVLNode(key, object);
 				this.left.parent=this;
 			}
 
 		} else {
 			// if key is greater than or equal to, add to the right
 			if(this.right != null){
-				this.right.add(key);
+				this.right.add(key, object);
 			} else {
-				this.right = new AVLNode(key);
+				this.right = new AVLNode(key, object);
 				this.right.parent=this;
 			}
 		}
@@ -68,13 +91,13 @@ public class AVLNode {
 		if(this.left != null){
 			// if left-child exists, replace current node with next smallest key
 			AVLNode nextSmallest = this.left.getMax();
-			this.value = nextSmallest.value;
+			this.key = nextSmallest.key;
 			nextSmallest.remove();
 
 		} else if(this.right != null) {
 			// if right-child exists, replace current node with next largest key
 			AVLNode nextLargest = this.right.getMin();
-			this.value = nextLargest.value;
+			this.key = nextLargest.key;
 			nextLargest.remove();
 
 		} else {
@@ -193,13 +216,18 @@ public class AVLNode {
 		AVLNode c = p.right;
 		
 		// swap p and q
-		int pValue = p.value;
-		p.value = q.value;
-		q.value = pValue;
+		int pKey = p.key;
+		Object pObject = p.object;
+		AVLNode pNode = p;
 
-		AVLNode temp = p;
+		p.key = q.key;
+		q.key = pKey;
+		
+		p.object = q.object;
+		q.object = pObject;
+
 		p = q;
-		q = temp;
+		q = pNode;
 
 		q.right = p;
 		p.parent = q;
@@ -250,11 +278,16 @@ public class AVLNode {
 		AVLNode c = p.left;
 		
 		// swap p and q
-		int pValue = p.value;
-		p.value = q.value;
-		q.value = pValue;
+		int pValue = p.key;
+		Object pObject = p.object;
+		AVLNode pNode = p;
 
-		AVLNode temp = p;
+		p.key = q.key;
+		q.key = pValue;
+
+		p.object = q.object;
+		q.object = pObject;
+
 		p = q;
 		q = temp;
 
@@ -281,7 +314,7 @@ public class AVLNode {
 	}
 	
 	public String toString(){
-		String output = this.value.toString();
+		String output = this.key.toString();
 
 		if(this.left != null){
 			output += "(" + this.left.toString() + ")";
