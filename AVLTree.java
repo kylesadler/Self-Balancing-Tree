@@ -35,36 +35,39 @@ public class AVLTree {
 	* Retrieve an object from the self-balancing tree in O(log n) time
 	* @param  key  	the key of the object to retrieve
 	* @return 		the object with the given key. returns null if not found
+	* @throws 		IllegalStateException if the tree is empty
 	*/	
 	public Object get(int key){
 		if(this.root != null) {
 			return this.root.get(key);
 		} else {
-			return null;
+			throw new IllegalStateException("AVL Tree is empty");
 		}
 	}
 
 	/**
 	* Returns the maximum object in the AVLTree in O(log n) time
 	* @return		Object stored in AVLTree with maximum key
+	* @throws 		IllegalStateException if the tree is empty
 	*/
 	public Object getMax(){
 		if(this.root != null) {
 			return this.root.getMax().object;
 		} else {
-			return null;
+			throw new IllegalStateException("AVL Tree is empty");
 		}
 	}
 
 	/**
 	* Returns the minimum object in the AVLTree in O(log n) time
 	* @return		Object stored in AVLTree with minimum key
+	* @throws 		IllegalStateException if the tree is empty
 	*/
 	public Object getMin(){
 		if(this.root != null) {
 			return this.root.getMin().object;
 		} else {
-			return null;
+			throw new IllegalStateException("AVL Tree is empty");
 		}
 	}
 
@@ -97,10 +100,15 @@ public class AVLTree {
 
 	/** 
 	* Returns the total height of the tree
-	* @return  height of tree
+	* @return  		height of tree
+	* @throws 		IllegalStateException if the tree is empty
 	*/	
 	public int getHeight(){
-		return root.depth;
+		if(this.root != null) {
+			return this.root.depth;
+		} else {
+			throw new IllegalStateException("AVL Tree is empty");
+		}
 	}
 	
 	/** 
