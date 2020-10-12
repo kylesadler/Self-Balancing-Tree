@@ -1,4 +1,6 @@
 # Self-Balancing-Tree
-This is my implementation of a self-balancing AVL tree
+This is a self-balancing AVL binary search tree where insertion, deletion, and lookup are guaranteed to take O(log n) in the worst-case. The tree is maintained by ensuring that the heights of each node's child subtrees differ by at most 1.
 
-![](https://upload.wikimedia.org/wikipedia/commons/9/9c/Rebalance_animation_simple.gif)
+To run tests, run `./test.bash`.
+
+Documentation ![here](https://kylesadler.github.io/Self-Balancing-Tree/)!
