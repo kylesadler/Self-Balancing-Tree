@@ -12,7 +12,7 @@ package self_balancing_tree;
 
 public class AVLTree {
 	
-	Node root;
+	AVLNode root;
 	
 	public AVLTree(){
 		this.root = null;
@@ -26,7 +26,7 @@ public class AVLTree {
 		if(this.root != null) {
 			this.root.add(key);
 		} else {
-			this.root = new Node(key);
+			this.root = new AVLNode(key);
 		}
 	}
 
@@ -50,8 +50,8 @@ public class AVLTree {
 			return;
 		}
 
-		// traverse tree to find Node with key to remove
-		Node current = this.root;
+		// traverse tree to find node with key to remove
+		AVLNode current = this.root;
 		while(current != null && current.value != key){
 			if(current.value > key) {
 				current = current.left;
