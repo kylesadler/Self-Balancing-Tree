@@ -3,4 +3,4 @@ This is a self-balancing AVL binary search tree where insertion, deletion, and l
 
 To run tests, run `./test.bash`.
 
-Documentation ![here](https://kylesadler.github.io/Self-Balancing-Tree/)!
+Documentation [here](https://kylesadler.github.io/Self-Balancing-Tree/)!
