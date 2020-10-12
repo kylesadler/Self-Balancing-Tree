@@ -1,3 +1,4 @@
+// package tree;
 /**
 * The AVLNode class implements a node in a self-balancing AVL binary search tree.
 *
@@ -6,7 +7,6 @@
 * @since   2018-10-03 
 */
 
-package self_balancing_tree;
 
 public class AVLNode {
 
@@ -34,25 +34,10 @@ public class AVLNode {
 		this.depth = 1;
 		this.balanceFactor = 0;
 	}
-
-	public AVLNode(int key){
-		/**
-		* Creates an AVLNode with key only
-		*/
-		this.right = null;
-		this.left = null;
-		this.parent = null;
-
-		this.key = key;
-		this.object = null;
-
-		this.depth = 1;
-		this.balanceFactor = 0;
-	}
 	
 	public void add(int key, Object object){
 		/**
-		* Adds a key to one of the AVLNode's subtrees recursively. 
+		* Adds a key to the current node's subtree recursively. 
 		* This function is initially called by AVLTree on the root node
 		* 
 		* @param  key  		the key to add to the tree
@@ -82,6 +67,34 @@ public class AVLNode {
 		this.balance(); // O(1)
 	}
 	
+	public Object get(int key){
+		/**
+		* Retrieve an object from the self-balancing tree in O(log n) time
+		* @param  key  	the key of the object to retrieve
+		* @return 		the object with the given key. returns null if not found
+		*/
+		if(this.key == key){
+			return this.object;
+		} 
+		
+		
+		if(this.key > key){
+			// if key is less than, get from left subtree
+			if(this.left != null){
+				return this.left.get(key);
+			} else {
+				return null;
+			}
+		} else {
+			// if key is greater than, get from right subtree
+			if(this.right != null){
+				return this.right.get(key);
+			} else {
+				return null;
+			}
+		}
+	}
+
 	public void remove(){
 		/**
 		* Removes the current node from the tree recursively while maintaining the 
@@ -289,7 +302,7 @@ public class AVLNode {
 		q.object = pObject;
 
 		p = q;
-		q = temp;
+		q = pNode;
 
 		q.left = q;
 		p.parent = q;
@@ -314,7 +327,7 @@ public class AVLNode {
 	}
 	
 	public String toString(){
-		String output = this.key.toString();
+		String output = Integer.toString(this.key); // convert to string
 
 		if(this.left != null){
 			output += "(" + this.left.toString() + ")";

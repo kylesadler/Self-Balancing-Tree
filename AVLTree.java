@@ -1,3 +1,4 @@
+// package tree;
 /**
 * The AVLTree class implements a self-balancing AVL binary search tree where
 * insertion, deletion, and lookup are guaranteed to take O(log n) in the worst-
@@ -8,7 +9,6 @@
 * @version 1.0
 * @since   2018-10-03 
 */
-package self_balancing_tree;
 
 public class AVLTree {
 	
