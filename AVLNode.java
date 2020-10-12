@@ -304,7 +304,7 @@ public class AVLNode {
 		p = q;
 		q = pNode;
 
-		q.left = q;
+		q.left = p;
 		p.parent = q;
 		
 		// set subtrees

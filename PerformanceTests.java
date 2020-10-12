@@ -12,13 +12,13 @@ import org.junit.Test;
 
 public class PerformanceTests {
 
-    @Test
-    public void Adding100NumbersWorstCase() {
+    @Test(timeout=5)
+    public void Adding10000NumbersWorstCaseShouldTakeLessThan5Ms() {
         AVLTree tree = new AVLTree();
 
         Object anObject = new Object();
 
-        for(int i = 0; i < 100; i++){
+        for(int i = 0; i < 10000; i++){
             tree.add(i, anObject);
         }
     }
