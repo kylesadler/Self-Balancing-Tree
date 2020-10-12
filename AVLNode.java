@@ -245,14 +245,16 @@ public class AVLNode {
 	}
 	
 	public String toString(){
-		String out=this.value+"";
+		
+		String output = this.value.toString();
+
 		if(this.left != null){
-			out+="("+this.left+")";
+			output += "(" + this.left.toString() + ")";
 		}
 		if(this.right != null){
-			out+="["+this.right+"]";
+			output += "[" + this.right.toString() + "]";
 		}
 		
-		return out;
+		return output;
 	}
 }

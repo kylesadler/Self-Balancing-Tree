@@ -33,7 +33,7 @@ public class AVLTree {
 	public int getHeight(){
 		/** 
 		* Returns the total height of the tree
-		* @return  height  	height of tree
+		* @return  height of tree
 		*/
 		return root.depth;
 	}
@@ -68,8 +68,9 @@ public class AVLTree {
 	
 	public String toString(){
 		/** 
-		* Returns a string representing the self-balancing tree
-		* @return
+		* Returns a string representation of the self-balancing tree in the form
+		* root(leftSubtree)[rightSubtree]
+		* @return 	string representation of tree
 		*/
 		if(root == null){
 			return "null";
