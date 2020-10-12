@@ -8,7 +8,9 @@
 */
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
+import java.lang.Math;
 
 public class PerformanceTests {
 
@@ -32,5 +34,18 @@ public class PerformanceTests {
         for(int i = 0; i < 10000; i++){
             tree.add(i, anObject);
         }
+    }
+
+    @Test(timeout=10)
+    public void HeightShouldBeLessThanLogNAfterAdding10000AscendingNumbers() {
+        AVLTree tree = new AVLTree();
+
+        Object anObject = new Object();
+
+        for(int i = 0; i < 10000; i++){
+            tree.add(i, anObject);
+        }
+
+        assertTrue(tree.getHeight() < Math.log(10000)/Math.log(2) + 1);
     }
 }
