@@ -59,12 +59,10 @@ public class AVLNode {
 		this.balance(); // O(1)
 	}
 	
-	
 	public void remove(){
 		/**
 		* Removes the current node from the tree recursively while maintaining the 
 		* AVL binary search tree structure
-		* 
 		*/
 
 		if(this.left != null){
@@ -163,83 +161,119 @@ public class AVLNode {
 		*	2. If the balanceFactor is less than -1. rotate the current node to the right
 		*/
 		if(balanceFactor > 1){
-			this.rotateToLeft();
+			this.rotateLeft();
 		}else if(balanceFactor < -1){
-			this.rotateToRight();
+			this.rotateRight();
 		}
 	}
 	
-	//left heavy
-	public void rotateToRight(){
+	public void rotateRight(){
+		/** 
+		* Enacts a right rotation on the current node. Called by this.balance() when 
+		* the current node is left heavy (balanceFactor < -1)
+		* 
+		* The tree is rotated like so:
+		* 
+		*			p					    q
+		*		  /   \					  /   \
+		*   	 q	   c       -->		 a     p
+		*	    / \			      		      /	\
+		*	   a   b			     		 b	 c
+		* 
+		* where p is the current node.
+		*/
 		
 		// guaranteed to not be null
 		AVLNode p = this;
 		AVLNode q = this.left;
-		int pValue = p.value;
 		
-		//might be null
-		AVLNode b = q.right;
+		// subtrees might be null
 		AVLNode a = q.left;
+		AVLNode b = q.right;
 		AVLNode c = p.right;
 		
-		//values of p and q are switched
-		p.value=q.value;
-		q.value=pValue;
-		
-		p.left=a;
-		p.right=q;
-		q.left=b;
-		q.right=c;
+		// swap p and q
+		int pValue = p.value;
+		p.value = q.value;
+		q.value = pValue;
 
-		if(c != null){
-			c.parent=q;
+		AVLNode temp = p;
+		p = q;
+		q = temp;
+
+		q.right = p;
+		p.parent = q;
+
+		
+		// set subtrees
+		q.left = a;
+		p.left = b;
+		p.right = c;
+
+		if(a != null){
+			a.parent = q;
 		}
 		if(b != null){
-			b.parent=q;
+			b.parent = p;
 		}
-		if(q != null){
-			q.parent=p;
-		}
-		if(a != null){
-			a.parent=p;
+		if(c != null){
+			c.parent = p;
 		}
 		
 		q.update();
 		p.update();
 	}
 
-	public void rotateToLeft(){
+	public void rotateLeft(){
+		/** 
+		* Enacts a left rotation on the current node. Called by this.balance() when 
+		* the current node is right heavy (balanceFactor > 1). 
+		*
+		* The tree is rotated like so:
+		* 
+		*			p					    q
+		*		  /   \					  /   \
+		*		 c	   q      -->		p      a
+		*			  /  \			   / \
+		*			 b	  a			  c   b
+		* 
+		* where p is the current node.
+		*/
+
+		// guaranteed to not be null
+		AVLNode p = this;
+		AVLNode q = this.right;
 		
-		//guaranteed to not be null
-		AVLNode p=this;
-		AVLNode q=this.right;
-		int pValue=p.value;
-		
-		//might be null
+		// subtrees might be null
 		AVLNode b = q.left;
 		AVLNode a = q.right;
 		AVLNode c = p.left;
 		
-		//values of p and q are switched
-		p.value=q.value;
-		q.value=pValue;
+		// swap p and q
+		int pValue = p.value;
+		p.value = q.value;
+		q.value = pValue;
+
+		AVLNode temp = p;
+		p = q;
+		q = temp;
+
+		q.left = q;
+		p.parent = q;
 		
-		p.right=a;
-		p.left=q;
-		q.right=b;
-		q.left=c;
+		// set subtrees
+		q.right = a;
+		p.right = b;
+		p.left = c;
 		
 		if(c != null){
-			c.parent=q;
+			c.parent = p;
 		}
 		if(b != null){
-			b.parent=q;
-		}
-		if(q != null){
-			q.parent=p;
+			b.parent = p;
 		}
 		if(a != null){
-			a.parent=p;
+			a.parent = q;
 		}
 		
 		q.update();
@@ -247,7 +281,6 @@ public class AVLNode {
 	}
 	
 	public String toString(){
-		
 		String output = this.value.toString();
 
 		if(this.left != null){
