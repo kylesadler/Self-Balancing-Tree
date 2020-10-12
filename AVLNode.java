@@ -35,7 +35,7 @@ public class AVLNode {
 		this.balanceFactor = 0;
 	}
 	
-	public void add(int key, Object object){
+	public void insert(int key, Object object){
 		/**
 		* Adds a key to the current node's subtree recursively. 
 		* This function is initially called by AVLTree on the root node
@@ -95,7 +95,7 @@ public class AVLNode {
 		}
 	}
 
-	public void remove(){
+	public void delete(){
 		/**
 		* Removes the current node from the tree recursively while maintaining the 
 		* AVL binary search tree structure
