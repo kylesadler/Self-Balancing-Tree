@@ -12,8 +12,19 @@ import org.junit.Test;
 
 public class PerformanceTests {
 
-    @Test(timeout=5)
-    public void Adding10000NumbersWorstCaseShouldTakeLessThan5Ms() {
+    @Test(timeout=10)
+    public void Adding10000DescendingNumbersShouldTakeLessThan5Ms() {
+        AVLTree tree = new AVLTree();
+
+        Object anObject = new Object();
+
+        for(int i = 10000; i > 0; i--){
+            tree.add(i, anObject);
+        }
+    }
+
+    @Test(timeout=10)
+    public void Adding10000AscendingNumbersShouldTakeLessThan5Ms() {
         AVLTree tree = new AVLTree();
 
         Object anObject = new Object();

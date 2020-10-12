@@ -12,7 +12,7 @@ import org.junit.Test;
 
 public class CorrectnessTests {
 
-    @Test
+    @Test(timeout=5)
     public void treeShouldRotateLeftAfterThreeAscendingInserts() {
         AVLTree tree = new AVLTree();
         Object anObject = new Object();
@@ -25,7 +25,7 @@ public class CorrectnessTests {
         assertEquals(tree.toString(), "1(0)[2]");
     }
 
-    @Test
+    @Test(timeout=5)
     public void treeShouldRotateRightAfterThreeDescendingInserts() {
         AVLTree tree = new AVLTree();
         Object anObject = new Object();
@@ -38,7 +38,7 @@ public class CorrectnessTests {
         assertEquals(tree.toString(), "1(0)[2]");
     }
 
-    @Test
+    @Test(timeout=10)
     public void treeShouldReturnCorrectValueAfter100AscendingInserts() {
         String specialValue = "this is a special value";
         for (int specialIndex = 0; specialIndex < 100; specialIndex++){
@@ -56,7 +56,7 @@ public class CorrectnessTests {
         }
     }
 
-    @Test
+    @Test(timeout=10)
     public void treeShouldReturnNullAfterRemovingValue() {
         String specialValue = "this is a special value";
         for (int specialIndex = 0; specialIndex < 100; specialIndex++){
@@ -76,7 +76,7 @@ public class CorrectnessTests {
         }
     }
 
-    @Test
+    @Test(timeout=5)
     public void treeShouldHaveCorrectStructureAfter100AscendingInserts() {
         AVLTree tree = new AVLTree();
         Object anObject = new Object();
