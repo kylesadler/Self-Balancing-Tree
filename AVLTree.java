@@ -43,6 +43,31 @@ public class AVLTree {
 			return null;
 		}
 	}
+
+	/**
+	* Returns the maximum object in the AVLTree in O(log n) time
+	* @return		Object stored in AVLTree with maximum key
+	*/
+	public Object getMax(){
+		if(this.root != null) {
+			return this.root.getMax().object;
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	* Returns the minimum object in the AVLTree in O(log n) time
+	* @return		Object stored in AVLTree with minimum key
+	*/
+	public Object getMin(){
+		if(this.root != null) {
+			return this.root.getMin().object;
+		} else {
+			return null;
+		}
+	}
+
 	/** 
 	* Deletes a key from the self-balancing tree in O(log n) time
 	* @param  key  	the key to remove from the tree
