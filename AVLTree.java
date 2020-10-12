@@ -18,14 +18,14 @@ public class AVLTree {
 		this.root = null;
 	}
 	
-	public void add(int key, Object object){
+	public void insert(int key, Object object){
 		/**
 		* Adds a key, object pair to the self-balancing tree in O(log n) time
 		* @param  key  		the key to add to the tree
 		* @param  object  	the object to add to the tree at key
 		*/
 		if(this.root != null) {
-			this.root.add(key, object);
+			this.root.insert(key, object);
 		} else {
 			this.root = new AVLNode(key, object);
 		}
@@ -44,9 +44,9 @@ public class AVLTree {
 		}
 	}
 	
-	public void remove(int key){
+	public void delete(int key){
 		/** 
-		* Removes a key from the self-balancing tree in O(log n) time
+		* Deletes a key from the self-balancing tree in O(log n) time
 		* @param  key  	the key to remove from the tree
 		*/
 		
@@ -67,7 +67,7 @@ public class AVLTree {
 		}
 		
 		if(current != null){ // remove if found
-			current.remove();
+			current.delete();
 		}
 		
 	}

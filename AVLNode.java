@@ -47,7 +47,7 @@ public class AVLNode {
 		if(this.key > key){
 			// if key is less than, add to the left
 			if(this.left != null){
-				this.left.add(key, object);
+				this.left.insert(key, object);
 			} else {
 				this.left = new AVLNode(key, object);
 				this.left.parent=this;
@@ -56,7 +56,7 @@ public class AVLNode {
 		} else {
 			// if key is greater than or equal to, add to the right
 			if(this.right != null){
-				this.right.add(key, object);
+				this.right.insert(key, object);
 			} else {
 				this.right = new AVLNode(key, object);
 				this.right.parent=this;
@@ -105,13 +105,13 @@ public class AVLNode {
 			// if left-child exists, replace current node with next smallest key
 			AVLNode nextSmallest = this.left.getMax();
 			this.key = nextSmallest.key;
-			nextSmallest.remove();
+			nextSmallest.delete();
 
 		} else if(this.right != null) {
 			// if right-child exists, replace current node with next largest key
 			AVLNode nextLargest = this.right.getMin();
 			this.key = nextLargest.key;
-			nextLargest.remove();
+			nextLargest.delete();
 
 		} else {
 			// if node has no children, remove node

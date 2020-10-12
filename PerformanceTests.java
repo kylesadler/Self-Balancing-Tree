@@ -21,7 +21,7 @@ public class PerformanceTests {
         Object anObject = new Object();
 
         for(int i = 10000; i > 0; i--){
-            tree.add(i, anObject);
+            tree.insert(i, anObject);
         }
     }
 
@@ -32,7 +32,7 @@ public class PerformanceTests {
         Object anObject = new Object();
 
         for(int i = 0; i < 10000; i++){
-            tree.add(i, anObject);
+            tree.insert(i, anObject);
         }
     }
 
@@ -43,7 +43,7 @@ public class PerformanceTests {
         Object anObject = new Object();
 
         for(int i = 0; i < 10000; i++){
-            tree.add(i, anObject);
+            tree.insert(i, anObject);
         }
 
         assertTrue(tree.getHeight() < Math.log(10000)/Math.log(2) + 1);
