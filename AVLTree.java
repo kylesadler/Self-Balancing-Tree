@@ -12,7 +12,7 @@
 
 public class AVLTree {
 	
-	AVLNode root;
+	private AVLNode root;
 	
 	public AVLTree(){
 		this.root = null;
@@ -32,7 +32,7 @@ public class AVLTree {
 	}
 
 	/**
-	* Retrieve an object from the self-balancing tree in O(log n) time
+	* Retrieves an object from the self-balancing tree in O(log n) time
 	* @param  key  	the key of the object to retrieve
 	* @return 		the object with the given key. returns null if not found
 	* @throws 		IllegalStateException if the tree is empty
