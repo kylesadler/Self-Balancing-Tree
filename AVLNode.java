@@ -62,48 +62,50 @@ public class AVLNode {
 	
 	public void remove(){
 		/**
-		* Removes the current node from the tree
+		* Removes the current node from the tree recursively while maintaining the 
+		* AVL binary search tree structure
 		* 
 		*/
 
 		if(this.left != null){
-			// get next smallest key
-			AVLNode a = this.left.getMax();
-			this.value = a.value;
-			a.remove();
+			// if left-child exists, replace current node with next smallest key
+			AVLNode nextSmallest = this.left.getMax();
+			this.value = nextSmallest.value;
+			nextSmallest.remove();
+
 		} else if(this.right != null) {
-			//get next largest number
-			AVLNode a = this.right.getMin();
-			this.value = a.value;
-			a.remove();
+			// if right-child exists, replace current node with next largest key
+			AVLNode nextLargest = this.right.getMin();
+			this.value = nextLargest.value;
+			nextLargest.remove();
+
 		} else {
-			//both right and left are null
-			AVLNode par = this.parent;
-			// remove node
-			if(this.value > par.value){
-				par.right=null;
-			}else if(this.value < par.value){
-				par.left=null;
-			}else{
-				//value is equal to parent's
-				if(par.left != null && this.value == par.left.value){
-					par.left=null;
-				}else if(par.right != null){
-					par.right=null;
-				}
+			// if node has no children, remove node
+			if(this.equals(this.parent.right)){
+				this.parent.right = null;
+			}else if(this.equals(this.parent.left)){
+				this.parent.left = null;
 			}
-			par.updateAllToRoot(); //O(log(n))
+			
+			this.parent.maintainTree(); // O(log n)
 		}
 		
 	}
 	
-	public void updateAllToRoot(){
-		AVLNode current=this;
-		do{
-			current.update();
-			current.balance();
-			current=current.parent;
-		}while(current != null);
+	public void maintainTree(){
+		/**
+		* Maintains AVL binary search tree structure after a node is deleted
+		* by recursively updating and balancing each ancestor.
+		* One call to this method takes O(h) time where h is the height of the
+		* current node
+		*/
+		
+		this.update();
+		this.balance();
+
+		if (this.parent != null){
+			this.parent.maintainTree();
+		}
 	}
 	
 	public AVLNode getMin(){
