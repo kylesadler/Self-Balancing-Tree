@@ -17,39 +17,37 @@ public class AVLTree {
 	public AVLTree(){
 		this.root = null;
 	}
-	
+
+	/**
+	* Adds a key, object pair to the self-balancing tree in O(log n) time
+	* @param  key  		the key to add to the tree
+	* @param  object  	the object to add to the tree at key
+	*/
 	public void insert(int key, Object object){
-		/**
-		* Adds a key, object pair to the self-balancing tree in O(log n) time
-		* @param  key  		the key to add to the tree
-		* @param  object  	the object to add to the tree at key
-		*/
 		if(this.root != null) {
 			this.root.insert(key, object);
 		} else {
 			this.root = new AVLNode(key, object);
 		}
 	}
-	
+
+	/**
+	* Retrieve an object from the self-balancing tree in O(log n) time
+	* @param  key  	the key of the object to retrieve
+	* @return 		the object with the given key. returns null if not found
+	*/	
 	public Object get(int key){
-		/**
-		* Retrieve an object from the self-balancing tree in O(log n) time
-		* @param  key  	the key of the object to retrieve
-		* @return 		the object with the given key. returns null if not found
-		*/
 		if(this.root != null) {
 			return this.root.get(key);
 		} else {
 			return null;
 		}
 	}
-	
+	/** 
+	* Deletes a key from the self-balancing tree in O(log n) time
+	* @param  key  	the key to remove from the tree
+	*/	
 	public void delete(int key){
-		/** 
-		* Deletes a key from the self-balancing tree in O(log n) time
-		* @param  key  	the key to remove from the tree
-		*/
-		
 		// if root is the only node, delete it
 		if(root.key == key && root.left == null && root.right == null){
 			this.root = null;
@@ -71,21 +69,21 @@ public class AVLTree {
 		}
 		
 	}
-	
+
+	/** 
+	* Returns the total height of the tree
+	* @return  height of tree
+	*/	
 	public int getHeight(){
-		/** 
-		* Returns the total height of the tree
-		* @return  height of tree
-		*/
 		return root.depth;
 	}
 	
+	/** 
+	* Returns a string representation of the self-balancing tree in the form
+	* root(leftSubtree)[rightSubtree]
+	* @return 	string representation of tree
+	*/	
 	public String toString(){
-		/** 
-		* Returns a string representation of the self-balancing tree in the form
-		* root(leftSubtree)[rightSubtree]
-		* @return 	string representation of tree
-		*/
 		if(root == null){
 			return "null";
 		}
